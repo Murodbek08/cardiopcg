@@ -1,0 +1,74 @@
+# DRAFT seed - NOT clinically reviewed (kb_status: draft). See _meta.yaml.
+# IE prophylaxis entries only apply when a high-risk flag is present in the patient's coded
+# conditions (rule set ie_prophylaxis_high_risk) - never from PCG probability alone.
+- drug_id: amoxicillin_ie_prophylaxis
+  inn_en: amoxicillin
+  inn_uz: amoksitsillin
+  atc_code: J01CA04
+  class_group: antibiotic_prophylaxis
+  drug_class: aminopenicillin
+  interaction_classes: [aminopenicillin]
+  forms: [{form: capsule, strengths_mg: [500]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: infective_endocarditis, requires_flags_any: [prosthetic_valve, mechanical_valve, prior_infective_endocarditis, congenital_heart_disease_cyanotic],
+       context_uz: "Yuqori xavfli bemorda stomatologik protsedura oldidan profilaktika (qoida: ie_prophylaxis_high_risk); davolash emas",
+       min_condition_prob: 0.0, evidence_level: guideline, dose_context: ie_prophylaxis}
+  doses:
+    - {population: adult, indication_context: ie_prophylaxis, route: po, dose_min: 2000, dose_max: 2000, unit: mg, frequency: "bir martalik, protseduradan 30-60 daqiqa oldin", max_daily: 2000}
+    - {population: pediatric, indication_context: ie_prophylaxis, route: po, weight_based: true, per_kg_min: 50, per_kg_max: 50, unit: mg, frequency: "bir martalik, protseduradan 30-60 daqiqa oldin", max_daily: 2000}
+  allergy_groups: [{allergy_group: penicillins, cross_reactive_with: [cephalosporins]}]
+  contraindications:
+    - {kind: absolute, code: penicillin_anaphylaxis, note_uz: "Muqobil: azitromitsin (KB dagi muqobil yozuv)"}
+  monitoring: []
+  adverse_effects: [{effect_uz: "Allergik reaksiya, ich ketishi, ko'ngil aynishi"}]
+  sources: [{type: guideline, name: "AHA IE prevention statement", year: 2021}, {type: guideline, name: "ESC Endocarditis Guidelines", year: 2023}]
+
+- drug_id: azithromycin_ie_prophylaxis
+  inn_en: azithromycin
+  inn_uz: azitromitsin
+  atc_code: J01FA10
+  class_group: antibiotic_prophylaxis
+  drug_class: macrolide
+  interaction_classes: [macrolides]
+  forms: [{form: capsule, strengths_mg: [250, 500]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: infective_endocarditis, requires_flags_any: [prosthetic_valve, mechanical_valve, prior_infective_endocarditis, congenital_heart_disease_cyanotic],
+       context_uz: "Penitsillinga allergiyada muqobil profilaktika; davolash emas", min_condition_prob: 0.0, evidence_level: guideline, dose_context: ie_prophylaxis}
+  doses:
+    - {population: adult, indication_context: ie_prophylaxis, route: po, dose_min: 500, dose_max: 500, unit: mg, frequency: "bir martalik, protseduradan 30-60 daqiqa oldin", max_daily: 500}
+    - {population: pediatric, indication_context: ie_prophylaxis, route: po, weight_based: true, per_kg_min: 15, per_kg_max: 15, unit: mg, frequency: "bir martalik, protseduradan 30-60 daqiqa oldin", max_daily: 500}
+  allergy_groups: [{allergy_group: macrolides}]
+  contraindications:
+    - {kind: relative, code: qt_prolongation, note_uz: "QT uzayishi bo'lsa ehtiyotkorlik"}
+  monitoring: []
+  adverse_effects: [{effect_uz: "Ich ketishi, ko'ngil aynishi, QT uzayishi (kam)"}]
+  sources: [{type: guideline, name: "AHA IE prevention statement", year: 2021}]
+
+- drug_id: benzathine_penicillin_g_rf
+  inn_en: benzathine benzylpenicillin
+  inn_uz: benzatin benzilpenitsillin
+  aliases: [benzathine penicillin, bitsillin]
+  atc_code: J01CE08
+  class_group: antibiotic_prophylaxis
+  drug_class: penicillin_depot
+  interaction_classes: [penicillin_depot]
+  forms: [{form: injection, strengths_mg: [1200000]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: rheumatic_heart_disease, context_uz: "Revmatik isitma/revmatik yurak kasalligida ikkilamchi profilaktika", min_condition_prob: 0.30, evidence_level: guideline, dose_context: rf_secondary_prophylaxis}
+  doses:
+    - {population: adult, indication_context: rf_secondary_prophylaxis, route: im, dose_min: 1.2, dose_max: 1.2, unit: "mln BR", frequency: "har 3-4 haftada",
+       titration_uz: "Davomiyligi yosh va kasallik og'irligiga bog'liq (yillar, ba'zan umr bo'yi) - shifokor belgilaydi"}
+    - {population: pediatric, indication_context: rf_secondary_prophylaxis, route: im, dose_min: 0.6, dose_max: 1.2, unit: "mln BR", frequency: "har 3-4 haftada",
+       titration_uz: "Vazn <= 27 kg: 0.6 mln BR; > 27 kg: 1.2 mln BR"}
+  allergy_groups: [{allergy_group: penicillins}]
+  contraindications:
+    - {kind: absolute, code: penicillin_anaphylaxis}
+  monitoring: []
+  adverse_effects: [{effect_uz: "Inyeksiya joyida og'riq, allergik reaksiya"}]
+  sources: [{type: guideline, name: "AHA Rheumatic Fever Prevention", year: 2009}]

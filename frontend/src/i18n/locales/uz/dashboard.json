@@ -1,0 +1,54 @@
+{
+  "admin": {
+    "title": "Dashboard"
+  },
+  "kpi": {
+    "examinations_total": "Jami tekshiruv",
+    "active_users": "Faol foydalanuvchi",
+    "avg_ai_processing_sec": "AI o'rtacha vaqti",
+    "failed_analyses": "Xatolikli tahlillar",
+    "deepseek": "DeepSeek holati",
+    "queue": "Navbatdagi vazifalar",
+    "oldest": "Eng eskisi: {{min}} daq",
+    "storage": "Disk / MinIO",
+    "llm_cost": "LLM xarajati"
+  },
+  "health": {
+    "up": "Faol",
+    "down": "Ishlamayapti",
+    "unknown": "Noma'lum",
+    "unavailable": "Tizim holati olinmadi",
+    "unavailable_body": "Chuqur sog'liq tekshiruvi javob bermadi. DeepSeek, Redis va worker holati ko'rinmaydi.",
+    "degraded": "Ba'zi xizmatlar nosoz"
+  },
+  "chart": {
+    "exams_timeseries": "Tekshiruvlar vaqt qatori",
+    "pcg_distribution": "PCG sinflari bo'yicha taqsimot",
+    "agreement": "AI va shifokor mosligi",
+    "agreement_info": "Mos = shifokorning yakuniy xulosasi AI natijasi bilan mos",
+    "age_groups": "Yosh guruhlari bo'yicha tekshiruvlar",
+    "activity_heatmap": "Faollik (hafta kuni x soat)",
+    "workload": "Shifokorlar ish yuklamasi",
+    "severity": "Og'irlik darajasi",
+    "date": "Sana",
+    "examinations": "Tekshiruvlar",
+    "completed": "Tasdiqlangan",
+    "class": "Sinf",
+    "count": "Soni",
+    "model": "Model",
+    "agree": "Mos",
+    "partial": "Qisman",
+    "disagree": "Mos emas",
+    "age_group": "Yosh guruhi",
+    "weekday": "Hafta kuni",
+    "hour": "Soat",
+    "doctor": "Shifokor",
+    "assigned": "Tayinlangan",
+    "pending": "Kutilmoqda"
+  },
+  "recent": {
+    "errors": "Oxirgi xatolar",
+    "no_errors": "Xatolik yo'q",
+    "audit": "Oxirgi audit hodisalari"
+  }
+}

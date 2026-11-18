@@ -1,0 +1,14 @@
+{
+  "title": "Bosh sahifa",
+  "new_exam": "YANGI TEKSHIRUV",
+  "search": "Bemor qidirish (ism, MRN)",
+  "today_exams": "Bugungi tekshiruvlar",
+  "today_empty": "Bugun hali tekshiruv yo'q",
+  "kpi": {
+    "today": "Bugun",
+    "processing": "AI tahlilda",
+    "rerecord": "Qayta yozish kerak",
+    "quality": "O'rtacha audio sifati",
+    "quality_hint": "0-1"
+  }
+}

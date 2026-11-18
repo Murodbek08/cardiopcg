@@ -1,0 +1,167 @@
+{
+  "users": {
+    "title": "Foydalanuvchilar",
+    "new": "Yangi foydalanuvchi",
+    "search": "Qidirish: ism yoki foydalanuvchi nomi",
+    "empty": "Hali foydalanuvchi yo'q",
+    "empty_filtered": "Mos foydalanuvchi topilmadi",
+    "profile": "Profil ma'lumotlari",
+    "security": "Xavfsizlik va holat",
+    "locked": "Hisob bloklangan",
+    "self_locked": "O'z akkauntingizni o'zgartira olmaysiz",
+    "deleted": "Foydalanuvchi o'chirildi (arxivlandi)",
+    "generate_password": "Parol yaratish",
+    "temp_password_hint": "Kamida 10 belgi. Foydalanuvchi birinchi kirishda uni almashtiradi.",
+    "must_change": "Birinchi kirishda parolni o'zgartirish majburiy",
+    "created_title": "Foydalanuvchi yaratildi",
+    "created_body": "Vaqtinchalik parolni nusxalab foydalanuvchiga xavfsiz tarzda yetkazing.",
+    "shown_once": "Bu ma'lumot faqat bir marta ko'rsatiladi. Yopilgach qayta ko'rib bo'lmaydi.",
+    "reset_title": "Vaqtinchalik parol",
+    "reset_link": "Bir martalik havola",
+    "fields": {
+      "username": "Foydalanuvchi nomi",
+      "full_name": "F.I.Sh.",
+      "role": "Rol",
+      "status": "Holat",
+      "phone": "Telefon",
+      "specialty": "Mutaxassislik",
+      "license_no": "Litsenziya raqami",
+      "department": "Bo'lim",
+      "last_login": "Oxirgi kirish",
+      "temp_password": "Vaqtinchalik parol"
+    },
+    "status": {
+      "active": "Faol",
+      "suspended": "To'xtatilgan",
+      "pending": "Kutilmoqda"
+    },
+    "actions": {
+      "reset-password": "Parolni tiklash",
+      "unlock": "Blokdan chiqarish",
+      "suspend": "To'xtatish",
+      "activate": "Faollashtirish",
+      "unlock_done": "Blokdan chiqarildi",
+      "suspend_done": "To'xtatildi",
+      "activate_done": "Faollashtirildi"
+    },
+    "confirm": {
+      "reset-password": { "title": "Parolni tiklash", "body": "Yangi vaqtinchalik parol yaratiladi va foydalanuvchining joriy sessiyalari bekor qilinadi." },
+      "suspend": { "title": "Foydalanuvchini to'xtatish", "body": "Foydalanuvchi tizimga kira olmaydi va barcha sessiyalari bekor qilinadi." },
+      "activate": { "title": "Faollashtirish", "body": "Foydalanuvchi yana tizimga kira oladi." },
+      "unlock": { "title": "Blokdan chiqarish", "body": "Hisob blokdan chiqariladi." },
+      "delete": { "title": "Foydalanuvchini o'chirish", "body": "Hisob arxivlanadi (tarix saqlanadi). Bu amalni administrator qayta tiklashi mumkin." }
+    }
+  },
+  "audit": {
+    "title": "Audit log",
+    "append_only": "Faqat qo'shiladigan jurnal: yozuvlarni o'zgartirish yoki o'chirib bo'lmaydi.",
+    "export": "CSV eksport",
+    "empty": "Tanlangan filtrlar bo'yicha hodisa yo'q",
+    "range_error": "Davr 90 kundan oshmasligi va 'dan' sanasi 'gacha' sanasidan oldin bo'lishi kerak",
+    "ok": "Muvaffaqiyatli",
+    "failed": "Xato",
+    "suspicious": "Shubhali faollik",
+    "suspicious_body": "Muvaffaqiyatsiz kirish: {{failed}}, ruxsat rad etilgan: {{denied}}{{reuse, select, true {, token qayta ishlatilgan} other {}}}",
+    "filters": {
+      "from": "Dan",
+      "to": "Gacha",
+      "action": "Amal turi",
+      "result": "Natija",
+      "resource": "Resurs",
+      "search": "Qidiruv (yo'l)"
+    },
+    "groups": {
+      "auth": "Autentifikatsiya",
+      "data": "Ma'lumot",
+      "files": "Fayl",
+      "clinical": "Klinik",
+      "security": "Xavfsizlik"
+    },
+    "cols": {
+      "time": "Vaqt (UTC+5)",
+      "user": "Foydalanuvchi",
+      "action": "Amal",
+      "resource": "Resurs",
+      "result": "Natija"
+    },
+    "detail": {
+      "request_id": "So'rov ID",
+      "method": "So'rov",
+      "status": "Holat kodi",
+      "user_agent": "User-agent",
+      "changes": "O'zgarishlar (oldin / keyin)",
+      "meta": "Qo'shimcha ma'lumot",
+      "ai": "AI chaqiruvi: model, tokenlar, kechikish"
+    }
+  },
+  "settings": {
+    "title": "Tizim sozlamalari",
+    "saved": "Sozlamalar saqlandi",
+    "unsaved": "Saqlanmagan o'zgarishlar: {{count}}",
+    "changed": "O'zgargan",
+    "ai_status": "DeepSeek holati",
+    "ai_up": "Faol",
+    "ai_down": "Ishlamayapti",
+    "ai_unknown": "Noma'lum",
+    "recheck": "Qayta tekshirish",
+    "key_note": "API kaliti serverdagi .env faylida saqlanadi va bu yerdan o'zgartirib bo'lmaydi.",
+    "confirm_title": "Xavfli sozlamalarni o'zgartirish",
+    "confirm_body": "Quyidagi sozlamalar klinik yoki xavfsizlik jarayoniga ta'sir qiladi: {{keys}}. O'zgarishlar auditga yoziladi.",
+    "groups": {
+      "ai": "AI va modellar",
+      "limits": "Chegaralar",
+      "security": "Xavfsizlik",
+      "retention": "Saqlash",
+      "clinic": "Klinika",
+      "other": "Boshqa"
+    },
+    "errors": {
+      "required": "Majburiy maydon",
+      "integer": "Butun son kiriting",
+      "number": "Son kiriting",
+      "min": "Qiymat {{min}} dan kam bo'lmasligi kerak",
+      "max": "Qiymat {{max}} dan oshmasligi kerak",
+      "option": "Ruxsat etilgan qiymatlardan birini tanlang",
+      "json": "JSON noto'g'ri",
+      "min_lt_max": "Minimal davomiylik maksimaldan kichik bo'lishi kerak"
+    },
+    "desc": {
+      "analysis_auto_start": "Yuklashdan keyin tahlil avtomatik boshlanadi",
+      "ai_llm_enabled": "O'chirilsa faqat signal tahlili ko'rsatiladi",
+      "ai_drug_suggestions_enabled": "AI dori tavsiyalarini yoqish (shifokor tasdiqlaydi)",
+      "ai_critical_probability_threshold": "Kritik bildirishnoma ehtimol chegarasi (0-1)",
+      "security_lockout_attempts": "Bloklashdan oldingi noto'g'ri urinishlar soni",
+      "security_lockout_minutes": "Blok davomiyligi (daqiqa)"
+    }
+  },
+  "reports": {
+    "title": "Hisobotlar va eksport",
+    "subtitle": "Agregat hisobotlar va CSV eksport. Barcha eksportlar audit logga yoziladi.",
+    "builder": "Hisobot yaratish",
+    "template": "Shablon",
+    "templates": {
+      "monthly": "Oylik faoliyat",
+      "ai_accuracy": "AI aniqligi",
+      "workload": "Ish yuklamasi",
+      "patients": "Bemorlar (ID hash)"
+    },
+    "from": "Dan",
+    "to": "Gacha",
+    "range_error": "Davr 1 yildan oshmasligi va 'dan' sanasi 'gacha' sanasidan oldin bo'lishi kerak",
+    "format": "Format",
+    "anonymize": "Shaxsiy identifikatorlarsiz (anonim)",
+    "anonymize_forced": "Administrator eksportida shaxsiy identifikatorlar bo'lmaydi.",
+    "phi_warning": "Eksport shaxsiy tibbiy ma'lumotlarni o'z ichiga oladi. Faqat o'z bemorlaringiz uchun va xavfsiz joyda saqlang.",
+    "create": "Yaratish",
+    "preview": "Oldindan ko'rish",
+    "preview_ts": "Vaqt qatori",
+    "preview_dist": "Taqsimot",
+    "date": "Sana",
+    "value": "Qiymat",
+    "class": "Sinf",
+    "jobs": "Yaratilgan hisobotlar",
+    "no_jobs": "Hali hisobot yaratilmagan",
+    "downloaded": "Fayl yuklab olindi",
+    "queued": "Hisobot navbatga qo'yildi"
+  }
+}

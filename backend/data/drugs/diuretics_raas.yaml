@@ -1,0 +1,130 @@
+# DRAFT seed - NOT clinically reviewed (kb_status: draft). See _meta.yaml.
+- drug_id: furosemide
+  inn_en: furosemide
+  inn_uz: furosemid
+  atc_code: C03CA01
+  class_group: diuretics
+  drug_class: loop_diuretic
+  interaction_classes: [loop_diuretics]
+  forms: [{form: tablet, strengths_mg: [20, 40]}, {form: injection, strengths_mg: [20]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 20, dose_max: 80, unit: mg, frequency: "qd-bid", max_daily: 600,
+       titration_uz: "Past dozadan boshlab, diurez va vaznga qarab tuzatiladi",
+       renal_adjust: [{egfr_lt: 30, action: may_need_higher_dose, note_uz: "Buyrak funksiyasi pasayganda samara kamayadi; shifokor aniqlaydi"}]}
+  contraindications:
+    - {kind: absolute, code: anuria, note_uz: "Anuriya"}
+    - {kind: absolute, code: hypokalemia_severe, condition_expr: {field: potassium_mmol_l, op: "<", value: 3.0}, note_uz: "Og'ir gipokaliemiya (K+ < 3.0)"}
+    - {kind: relative, code: sulfonamide_allergy, note_uz: "Sulfanilamidlarga allergiya bo'lsa kross-reaktivlik ehtimoli past, ehtiyotkorlik"}
+  allergy_groups: [{allergy_group: sulfonamides_nonantibiotic, strength: relative}]
+  monitoring:
+    - {parameter: "K+, Na+, kreatinin", schedule_uz: "Boshlanganda va 1-2 haftadan so'ng"}
+    - {parameter: "Vazn, AQB", schedule_uz: "Kundalik/muntazam"}
+  adverse_effects: [{effect_uz: "Gipokaliemiya, gipotenziya, dehidratatsiya, ototoksiklik (yuqori dozada)"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: spironolactone
+  inn_en: spironolactone
+  inn_uz: spironolakton
+  atc_code: C03DA01
+  class_group: diuretics
+  drug_class: mineralocorticoid_antagonist
+  interaction_classes: [mra, potassium_sparing]
+  forms: [{form: tablet, strengths_mg: [25, 50, 100]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.40, evidence_level: guideline, context_uz: "HFrEF (kam EF) tasdiqlangan bo'lsa"}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 12.5, dose_max: 50, unit: mg, frequency: qd, max_daily: 50,
+       titration_uz: "12.5-25 mg dan boshlab, K+/kreatinin nazoratida oshiriladi",
+       renal_adjust: [{egfr_lt: 30, action: avoid, note_uz: "eGFR < 30 da boshlash tavsiya etilmaydi"}]}
+  contraindications:
+    - {kind: absolute, code: hyperkalemia, condition_expr: {field: potassium_mmol_l, op: ">", value: 5.0}, note_uz: "K+ > 5.0 mmol/l"}
+    - {kind: absolute, code: egfr_lt_30, condition_expr: {field: egfr_ml_min, op: "<", value: 30}}
+    - {kind: absolute, code: addison_disease}
+    - {kind: relative, code: pregnancy, note_uz: "Homiladorlikda faqat shifokor qarori bilan"}
+  monitoring: [{parameter: "K+, kreatinin", schedule_uz: "1 hafta, 4 hafta, keyin har 3-6 oyda"}]
+  adverse_effects: [{effect_uz: "Giperkaliemiya, ginekomastiya, buyrak funksiyasi pasayishi"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: enalapril
+  inn_en: enalapril
+  inn_uz: enalapril
+  atc_code: C09AA02
+  class_group: ace_inhibitors
+  drug_class: ace_inhibitor
+  interaction_classes: [ace_inhibitors]
+  forms: [{form: tablet, strengths_mg: [2.5, 5, 10, 20]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 2.5, dose_max: 20, unit: mg, frequency: bid, max_daily: 40,
+       titration_uz: "2.5 mg x2 dan boshlab, 1-2 haftada bir bosqichma-bosqich oshiriladi",
+       renal_adjust: [{egfr_lt: 30, action: reduce, factor: 0.5, note_uz: "Past dozadan boshlash"}]}
+  contraindications:
+    - {kind: absolute, code: angioedema_history}
+    - {kind: absolute, code: pregnancy}
+    - {kind: absolute, code: bilateral_renal_artery_stenosis}
+    - {kind: absolute, code: hyperkalemia, condition_expr: {field: potassium_mmol_l, op: ">", value: 5.5}}
+    - {kind: relative, code: severe_aortic_stenosis, note_uz: "Og'ir aortal stenozda gipotenziya xavfi; kardiolog nazorati"}
+  allergy_groups: [{allergy_group: ace_inhibitors}]
+  monitoring:
+    - {parameter: "Kreatinin/eGFR, K+", schedule_uz: "Boshlanganda, 1-2 haftada va doza o'zgarganda"}
+    - {parameter: "AQB", schedule_uz: "Har tashrifda"}
+  adverse_effects: [{effect_uz: "Quruq yo'tal, gipotenziya, giperkaliemiya, buyrak funksiyasi pasayishi, angioedema (kam)"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: ramipril
+  inn_en: ramipril
+  inn_uz: ramipril
+  atc_code: C09AA05
+  class_group: ace_inhibitors
+  drug_class: ace_inhibitor
+  interaction_classes: [ace_inhibitors]
+  forms: [{form: tablet, strengths_mg: [1.25, 2.5, 5, 10]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 1.25, dose_max: 10, unit: mg, frequency: "qd-bid", max_daily: 10,
+       titration_uz: "1.25-2.5 mg dan boshlab, 1-2 haftada bir oshiriladi",
+       renal_adjust: [{egfr_lt: 30, action: reduce, factor: 0.5, note_uz: "Past dozadan boshlash va ehtiyotkorlik"}]}
+  contraindications:
+    - {kind: absolute, code: angioedema_history}
+    - {kind: absolute, code: pregnancy}
+    - {kind: absolute, code: bilateral_renal_artery_stenosis}
+    - {kind: absolute, code: hyperkalemia, condition_expr: {field: potassium_mmol_l, op: ">", value: 5.5}}
+  allergy_groups: [{allergy_group: ace_inhibitors}]
+  monitoring: [{parameter: "Kreatinin/eGFR, K+, AQB", schedule_uz: "Boshlanganda va doza o'zgarganda"}]
+  adverse_effects: [{effect_uz: "Quruq yo'tal, gipotenziya, giperkaliemiya, angioedema (kam)"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: losartan
+  inn_en: losartan
+  inn_uz: losartan
+  atc_code: C09CA01
+  class_group: arb
+  drug_class: angiotensin_receptor_blocker
+  interaction_classes: [arb]
+  forms: [{form: tablet, strengths_mg: [25, 50, 100]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline, context_uz: "ACE ingibitori ko'tarilmasa (masalan, yo'tal)"}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 25, dose_max: 150, unit: mg, frequency: qd, max_daily: 150,
+       titration_uz: "25-50 mg dan boshlab, bosqichma-bosqich oshiriladi"}
+  contraindications:
+    - {kind: absolute, code: pregnancy}
+    - {kind: absolute, code: bilateral_renal_artery_stenosis}
+    - {kind: absolute, code: hyperkalemia, condition_expr: {field: potassium_mmol_l, op: ">", value: 5.5}}
+  monitoring: [{parameter: "Kreatinin/eGFR, K+, AQB", schedule_uz: "Boshlanganda va doza o'zgarganda"}]
+  adverse_effects: [{effect_uz: "Gipotenziya, giperkaliemiya, buyrak funksiyasi pasayishi"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]

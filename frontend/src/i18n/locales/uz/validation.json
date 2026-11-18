@@ -1,0 +1,35 @@
+{
+  "required": "Majburiy maydon",
+  "invalid": "Noto'g'ri qiymat",
+  "min_length": "Kamida {{count}} belgi bo'lishi kerak",
+  "max_length": "{{count}} belgidan oshmasligi kerak",
+  "min_value": "Qiymat {{min}} dan kam bo'lmasligi kerak",
+  "max_value": "Qiymat {{max}} dan oshmasligi kerak",
+  "range": "Qiymat {{min}} va {{max}} oralig'ida bo'lishi kerak",
+  "integer": "Butun son kiriting",
+  "number": "Son kiriting",
+  "email": "Email noto'g'ri",
+  "phone": "Telefon +998 va 9 raqamdan iborat bo'lishi kerak",
+  "username": "3-32 belgi: kichik lotin harflari, raqamlar, nuqta, tire, pastki chiziq",
+  "password_mismatch": "Parollar mos kelmaydi",
+  "password_same_as_old": "Yangi parol joriy paroldan farq qilishi kerak",
+  "password_contains_username": "Parol foydalanuvchi nomini o'z ichiga olmasligi kerak",
+  "password_rules": {
+    "length": "{{count}}+ belgi",
+    "case": "Katta va kichik harf",
+    "digit": "Raqam",
+    "special": "Maxsus belgi"
+  },
+  "password_strength": {
+    "0": "Juda zaif",
+    "1": "Zaif",
+    "2": "O'rtacha",
+    "3": "Yaxshi",
+    "4": "A'lo"
+  },
+  "date_range": "Davr noto'g'ri",
+  "zones_ascending": "Zonalar o'suvchi bo'lishi kerak: 0 < past < o'rta < yuqori < 100",
+  "min_less_than_max": "Minimal qiymat maksimaldan kichik bo'lishi kerak",
+  "url": "To'g'ri havola kiriting",
+  "atc": "ATC kodi formati: A00AA00"
+}

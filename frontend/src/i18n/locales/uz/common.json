@@ -1,0 +1,126 @@
+{
+  "app": {
+    "name": "CardioPCG AI",
+    "tagline": "Fonokardiografiya tahlili",
+    "disclaimer": "Tizim qaror qo'llab-quvvatlash vositasi; sertifikatsiyalangan tibbiy qurilma emas.",
+    "skip_to_content": "Asosiy kontentga o'tish"
+  },
+  "actions": {
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "close": "Yopish",
+    "confirm": "Tasdiqlash",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "create": "Yaratish",
+    "new": "Yangi",
+    "open": "Ochish",
+    "back": "Orqaga",
+    "next": "Keyingisi",
+    "retry": "Qayta urinish",
+    "refresh": "Yangilash",
+    "export": "Eksport",
+    "export_csv": "CSV yuklab olish",
+    "export_png": "PNG yuklab olish",
+    "search": "Qidirish",
+    "clear_filters": "Filtrlarni tozalash",
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi",
+    "download": "Yuklab olish",
+    "upload": "Yuklash",
+    "fullscreen": "To'liq ekran",
+    "view_table": "Jadval sifatida ko'rish",
+    "view_chart": "Grafik sifatida ko'rish",
+    "apply": "Qo'llash",
+    "reset": "Tiklash",
+    "activate": "Faollashtirish",
+    "deactivate": "Faolsizlantirish",
+    "publish": "Nashr qilish",
+    "archive": "Arxivlash",
+    "show_more": "Batafsil",
+    "details": "Tafsilotlar"
+  },
+  "state": {
+    "loading": "Yuklanmoqda",
+    "empty": "Ma'lumot yo'q",
+    "empty_period": "Tanlangan davrda ma'lumot yo'q",
+    "error": "Xatolik yuz berdi",
+    "request_id": "So'rov ID",
+    "offline": "Internet yo'q: o'zgarishlar saqlanmaydi",
+    "not_enough_data": "Ma'lumot yetarli emas (n={{n}})",
+    "unsaved": "Saqlanmagan o'zgarishlar",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "all": "Hammasi",
+    "none": "Yo'q",
+    "total": "Jami",
+    "page_of": "{{page}} / {{pages}}",
+    "rows_per_page": "Sahifada",
+    "showing": "{{from}}-{{to}} / {{total}}",
+    "no_results": "Mos natija topilmadi"
+  },
+  "theme": {
+    "label": "Mavzu",
+    "light": "Yorug'",
+    "dark": "Qorong'u",
+    "system": "Tizim"
+  },
+  "language": {
+    "label": "Til",
+    "uz": "O'zbekcha",
+    "ru": "Ruscha",
+    "en": "Inglizcha"
+  },
+  "period": {
+    "today": "Bugun",
+    "7d": "7 kun",
+    "30d": "30 kun",
+    "90d": "90 kun",
+    "custom": "Maxsus",
+    "label": "Davr",
+    "from": "Dan",
+    "to": "Gacha",
+    "invalid_range": "Davr 1-365 kun bo'lishi va 'dan' sanasi 'gacha' sanasidan oldin bo'lishi kerak"
+  },
+  "role": {
+    "admin": "Administrator",
+    "doctor": "Shifokor",
+    "nurse": "Hamshira"
+  },
+  "gender": {
+    "male": "Erkak",
+    "female": "Ayol"
+  },
+  "time": {
+    "minutes": "{{count}} daq",
+    "seconds": "{{count}} s",
+    "ms": "{{count}} ms"
+  },
+  "session": {
+    "expired_title": "Sessiya tugadi",
+    "expired_body": "Xavfsizlik sababli qayta kirishingiz kerak.",
+    "reuse_body": "Xavfsizlik sababli qayta kiring.",
+    "idle_title": "Faolsizlik",
+    "idle_body": "Siz uzoq vaqt faol bo'lmadingiz. 1 daqiqadan keyin tizimdan chiqarilasiz.",
+    "extend": "Sessiyani uzaytirish",
+    "login_again": "Qayta kirish"
+  },
+  "pagination": {
+    "prev": "Oldingi",
+    "next": "Keyingi",
+    "first": "Birinchi",
+    "last": "Oxirgi"
+  },
+  "dropzone": {
+    "title": "Faylni shu yerga tashlang yoki tanlang",
+    "browse": "Fayl tanlash",
+    "accepted": "Ruxsat etilgan: {{types}}",
+    "max_size": "Maksimal hajm: {{size}}",
+    "too_large": "Fayl hajmi {{size}} dan oshmasligi kerak",
+    "bad_type": "Fayl turi qo'llab-quvvatlanmaydi"
+  },
+  "table": {
+    "view_as_table": "Jadval sifatida ko'rish",
+    "sort": "Saralash"
+  }
+}

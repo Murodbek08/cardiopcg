@@ -1,0 +1,85 @@
+# Name normalisation tables (lowercase keys). Used by the deterministic safety filter.
+
+# patient allergy string -> allergy groups used in drug.allergy_groups
+allergy_aliases:
+  penicillin: penicillins
+  penitsillin: penicillins
+  penitsillinlar: penicillins
+  penicillins: penicillins
+  amoxicillin: penicillins
+  amoksitsillin: penicillins
+  ampicillin: penicillins
+  ampitsillin: penicillins
+  cephalosporin: cephalosporins
+  setsfalosporin: cephalosporins
+  sefalosporin: cephalosporins
+  sulfonamide: sulfonamides_nonantibiotic
+  sulfanilamid: sulfonamides_nonantibiotic
+  sulfa: sulfonamides_nonantibiotic
+  ace inhibitor: ace_inhibitors
+  ace inhibitors: ace_inhibitors
+  ingibitor ace: ace_inhibitors
+  enalapril: ace_inhibitors
+  ramipril: ace_inhibitors
+  macrolide: macrolides
+  makrolid: macrolides
+  azithromycin: macrolides
+  azitromitsin: macrolides
+  aspirin: nsaids
+
+# medication string -> classes (for interaction matching) for drugs that are NOT in the KB
+medication_classes:
+  ibuprofen: [nsaids]
+  diclofenac: [nsaids]
+  diklofenak: [nsaids]
+  naproxen: [nsaids]
+  ketorolac: [nsaids]
+  meloxicam: [nsaids]
+  aspirin: [antiplatelet, nsaids]
+  acetylsalicylic acid: [antiplatelet, nsaids]
+  clopidogrel: [antiplatelet]
+  verapamil: [ccb_nondhp]
+  diltiazem: [ccb_nondhp]
+  amlodipine: [ccb_dhp]
+  clarithromycin: [strong_cyp3a4_pgp_inhibitors, macrolides]
+  ketoconazole: [strong_cyp3a4_pgp_inhibitors]
+  itraconazole: [strong_cyp3a4_pgp_inhibitors]
+  ritonavir: [strong_cyp3a4_pgp_inhibitors]
+  rifampicin: [strong_cyp3a4_pgp_inducers]
+  carbamazepine: [strong_cyp3a4_pgp_inducers]
+  gentamicin: [aminoglycosides]
+  amikacin: [aminoglycosides]
+  potassium chloride: [potassium_supplements]
+  kaliy xlorid: [potassium_supplements]
+  panangin: [potassium_supplements]
+  hydrochlorothiazide: [thiazides]
+  indapamide: [thiazides]
+  valsartan: [arb]
+  candesartan: [arb]
+  telmisartan: [arb]
+  digoxin: [cardiac_glycosides]
+  amiodarone: [amiodarone]
+  trimethoprim: [potassium_raising]
+
+# free-text condition -> condition flag codes (patient `conditions` / `condition_flags`)
+condition_aliases:
+  mexanik qopqoq: mechanical_valve
+  mechanical valve: mechanical_valve
+  sun'iy qopqoq: prosthetic_valve
+  prosthetic valve: prosthetic_valve
+  atrial fibrillation: atrial_fibrillation
+  bo'lmachalar fibrillyatsiyasi: atrial_fibrillation
+  fp: atrial_fibrillation
+  angioedema: angioedema_history
+  angioedema tarixi: angioedema_history
+  anuriya: anuria
+  mitral stenoz: moderate_severe_mitral_stenosis
+  og'ir aortal stenoz: severe_aortic_stenosis
+  qon ketish: active_major_bleeding
+  bronxial astma: asthma_copd_severe
+  astma: asthma_copd_severe
+  av blok: av_block_2_3_no_pacemaker
+  oldingi endokardit: prior_infective_endocarditis
+  endokardit tarixi: prior_infective_endocarditis
+  revmatik isitma: rheumatic_fever_history
+  penitsillinga anafilaksiya: penicillin_anaphylaxis

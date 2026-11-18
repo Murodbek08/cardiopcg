@@ -1,0 +1,154 @@
+name: ci
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: backend (ruff + pytest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - run: uv python install 3.13
+      - run: uv sync --frozen
+      - name: ruff lint
+        run: uv run ruff check .
+      # `ruff format --check` is intentionally not gated yet: a few existing files are not formatted.
+      - name: pytest (tests start a real PostgreSQL 17 via testcontainers; Docker is available on the runner)
+        run: uv run pytest -q
+      - name: dependency audit (informational)
+        run: uv export --frozen --no-dev --no-hashes -o /tmp/req.txt >/dev/null && uvx pip-audit -r /tmp/req.txt --no-deps --disable-pip || true
+
+  frontend:
+    name: frontend (verify)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.12.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      # typecheck, lint, no-emoji check, unit tests, production build, bundle budget
+      - run: pnpm verify
+
+  docker-build:
+    name: docker build + compose config
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: validate compose files (placeholder env, no secrets)
+        run: |
+          sed -e 's/<[^>]*>/placeholder/g' deploy/.env.production.example > deploy/.env
+          docker compose -p cardiopcg -f deploy/docker-compose.prod.yml config -q
+          rm -f deploy/.env
+          docker compose -f deploy/docker-compose.dev.yml config -q
+      - name: build api image
+        uses: docker/build-push-action@v6
+        with:
+          context: backend
+          target: runtime
+          load: true
+          tags: cardiopcg/api:ci
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,scope=api,mode=max
+      - name: build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: deploy/frontend.Dockerfile
+          load: true
+          tags: cardiopcg/frontend:ci
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,scope=web,mode=max
+      - name: trivy (api image, HIGH/CRITICAL, fixable only)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: cardiopcg/api:ci
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+      - name: trivy (frontend image)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: cardiopcg/frontend:ci
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"
+
+  e2e:
+    name: e2e (Playwright vs dev compose stack)
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.12.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: e2e/pnpm-lock.yaml
+      - name: start dev stack + create test admin (random password, kept out of logs)
+        run: bash e2e/scripts/setup-e2e.sh
+      - run: pnpm install --frozen-lockfile
+        working-directory: e2e
+      - run: pnpm exec playwright install --with-deps chromium
+        working-directory: e2e
+      - run: pnpm test
+        working-directory: e2e
+      - name: stack logs on failure
+        if: failure()
+        run: docker compose -f deploy/docker-compose.dev.yml logs --tail=200 api worker web | sed -E 's/(password|secret|token)=[^ ]+/\1=***/Ig'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report
+            e2e/test-results
+          retention-days: 7
+      - name: tear down
+        if: always()
+        run: docker compose -f deploy/docker-compose.dev.yml down -v
+
+  secrets-scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,62 @@
+{
+  "dashboard": {
+    "greeting": "Salom, {{name}}",
+    "new_exam": "Yangi tekshiruv",
+    "urgent_alert": "{{count}} ta shoshilinch tekshiruv kutmoqda",
+    "urgent_body": "Navbatda shoshilinch yoki favqulodda tekshiruvlar bor: ularni birinchi ko'rib chiqing.",
+    "queue": "Tasdiqlash navbati",
+    "queue_empty": "Barcha tekshiruvlar ko'rib chiqilgan",
+    "followups": "Yaqin nazoratlar"
+  },
+  "kpi": {
+    "my_pending": "Tasdiqlash kutilmoqda",
+    "completed_today": "Bugun ko'rilgan",
+    "urgent_waiting": "Shoshilinch kutmoqda",
+    "avg_time": "O'rtacha javob vaqti",
+    "agreement": "AI bilan moslik",
+    "agreement_info": "Mos = yakuniy xulosa AI natijasi bilan mos",
+    "completed_period": "Davrdagi xulosalar",
+    "patients_seen": "Ko'rilgan bemorlar",
+    "followups": "7 kunlik nazoratlar",
+    "min": "daq"
+  },
+  "chart": {
+    "completed": "Tasdiqlangan tekshiruvlar",
+    "agreement": "AI va men mosligi",
+    "agreement_trend": "Moslik trendi (%)",
+    "final_class": "Yakuniy sinflar",
+    "age_groups": "Yosh guruhlari",
+    "date": "Sana",
+    "agree": "Mos",
+    "partial": "Qisman",
+    "disagree": "Mos emas",
+    "class": "Sinf",
+    "count": "Soni",
+    "age_group": "Yosh guruhi"
+  },
+  "queue": {
+    "title": "Tasdiqlash navbati",
+    "hint": "Muhimlik va kutish vaqti bo'yicha tartiblangan. N tugmasi: keyingisi.",
+    "open_next": "Tanlanganni ochish",
+    "open": "Ish joyini ochish",
+    "critical": "Kritik holat: birinchi ko'rib chiqing.",
+    "key_hint": "Klaviatura: N - keyingi"
+  },
+  "analyses": {
+    "title": "AI tahlillar va tarix",
+    "hint": "AI natijasi mavjud barcha tekshiruvlar.",
+    "empty": "Tahlil topilmadi",
+    "tabs": {
+      "all": "Hammasi",
+      "pending": "Kutilmoqda",
+      "done": "Tasdiqlangan"
+    },
+    "exam": "Raqam",
+    "patient": "Bemor",
+    "date": "Sana",
+    "class": "Sinf",
+    "severity": "Og'irlik",
+    "confidence": "Ishonch",
+    "status": "Holat"
+  }
+}

@@ -1,0 +1,9 @@
+# CardioPCG local drug knowledge base - METADATA
+# ALL entries are SEEDS WRITTEN FOR CODING/TESTING and are NOT clinically reviewed.
+# kb_status: draft  -> excluded from proposals unless CARDIOPCG_KB_ALLOW_DRAFT=true (staging only).
+# Only a cardiologist + clinical pharmacologist may flip an entry to `reviewed` (doc 02 section 15).
+kb_version: 1
+schema: cardiopcg-kb/1
+notes: >
+  Reference doses are adult / normal renal+hepatic function unless a renal_adjust says otherwise.
+  Sources named below are general guideline names only; exact recommendation levels are NOT verified.

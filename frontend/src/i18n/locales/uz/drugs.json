@@ -1,0 +1,101 @@
+{
+  "title": "Dorilar bazasi",
+  "subtitle": "AI dori tavsiyalari faqat shu tekshirilgan bazadagi dorilar bilan chegaralanadi.",
+  "new": "Yangi dori",
+  "new_hint": "Yangi dori qoralama holatida yaratiladi va nashr qilinmaguncha AI uni ko'rmaydi.",
+  "search": "Dori nomi bo'yicha qidirish",
+  "empty": "Bazada hali dori yo'q",
+  "saved": "Saqlandi",
+  "fix_errors": "Formadagi xatolarni to'g'rilang",
+  "publish_done": "Nashr qilindi",
+  "archive_done": "Arxivlandi",
+  "published_note": "Nashr qilingan dorini o'zgartirish yangi versiya yaratadi; avvalgi tekshiruvlar eski versiyaga havola saqlaydi.",
+  "archived_note": "Arxivlangan dorini tahrirlab bo'lmaydi.",
+  "publish_blocked": "Nashr uchun to'ldiring: {{items}}",
+  "publish_blocked_title": "Nashr qilish uchun to'liq emas",
+  "comma_hint": "Vergul bilan ajrating",
+  "forms": "Shakllari",
+  "indications": "Ko'rsatmalar (ICD-10)",
+  "text": "Matn",
+  "absolute": "Mutlaq",
+  "add": "Qator qo'shish",
+  "cols": {
+    "inn": "Nomi (INN)",
+    "trade": "Savdo nomlari",
+    "group": "Guruh",
+    "version": "Versiya",
+    "status": "Holat",
+    "updated": "Yangilangan"
+  },
+  "status": {
+    "draft": "Qoralama",
+    "published": "Faol",
+    "archived": "Arxiv"
+  },
+  "tabs": {
+    "main": "Asosiy",
+    "dose": "Dozalar",
+    "contra": "Qarshi ko'rsatmalar",
+    "side": "Yon ta'sirlar",
+    "interactions": "O'zaro ta'sirlar",
+    "sources": "Manbalar",
+    "history": "Tarix"
+  },
+  "dose": {
+    "population": "Populyatsiya",
+    "min": "Minimal doza",
+    "max": "Maksimal doza",
+    "unit": "Birlik",
+    "max_daily": "Kunlik chegara",
+    "note": "Izoh",
+    "add": "Doza qoidasi qo'shish"
+  },
+  "frequency": {
+    "label": "Chastota",
+    "common": "Tez-tez",
+    "uncommon": "Kam uchraydigan",
+    "rare": "Kamdan-kam"
+  },
+  "interactions": {
+    "search": "Ikkinchi dorini qidiring",
+    "drug": "Dori",
+    "level": "Daraja",
+    "mechanism": "Mexanizm",
+    "recommendation": "Tavsiya",
+    "symmetric": "O'zaro ta'sir ikki tomonlama yoziladi (simmetrik). Dorining o'zi bilan ta'sir taqiqlangan.",
+    "duplicate": "Bu dori allaqachon qo'shilgan"
+  },
+  "sources": {
+    "title": "Manba nomi",
+    "add": "Manba qo'shish"
+  },
+  "blockers": {
+    "inn": "INN",
+    "group": "guruh",
+    "dose_rules": "kamida 1 ta doza qoidasi",
+    "sources": "kamida 1 ta manba"
+  },
+  "confirm": {
+    "publish": {
+      "title": "Nashr qilish",
+      "body": "Dori faollashadi va AI tavsiyalarida ishlatilishi mumkin bo'ladi."
+    },
+    "archive": {
+      "title": "Arxivlash",
+      "body": "Dori AI tavsiyalaridan chiqariladi."
+    }
+  },
+  "import": {
+    "title": "CSV import",
+    "body": "Avval oldindan ko'rish (dry-run) bajariladi; xatolar bo'lmasa import qilish mumkin.",
+    "preview": "Oldindan ko'rish",
+    "apply": "Import qilish",
+    "summary": "Jami: {{total}}, to'g'ri: {{valid}}, xato: {{errors}}",
+    "row": "Qator",
+    "error": "Xato",
+    "done": "{{count}} ta dori import qilindi"
+  },
+  "versions": {
+    "none": "Saqlangandan keyin versiyalar tarixi ko'rinadi"
+  }
+}

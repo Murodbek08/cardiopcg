@@ -1,0 +1,29 @@
+# drug_a / drug_b_or_class: a KB drug_id OR "class:<name>". Matching is symmetric.
+# DRAFT seed (doc 02 section 15.4, extended). Severity: minor|moderate|major|contraindicated
+- {drug_a: warfarin, drug_b_or_class: "class:nsaids", severity: major, effect_uz: "Qon ketish xavfi ortadi", management_uz: "Birga qo'llashdan qoching; zarur bo'lsa INR nazorati"}
+- {drug_a: warfarin, drug_b_or_class: "class:amiodarone", severity: major, effect_uz: "INR keskin oshadi", management_uz: "Warfarin dozasini kamaytirish va INR nazorati"}
+- {drug_a: warfarin, drug_b_or_class: "class:strong_cyp3a4_pgp_inhibitors", severity: major, effect_uz: "INR oshishi", management_uz: "INR tez-tez nazorat qilinadi"}
+- {drug_a: warfarin, drug_b_or_class: "class:antiplatelet", severity: major, effect_uz: "Qon ketish xavfi ortadi", management_uz: "Faqat aniq ko'rsatma bilan, nazorat ostida"}
+- {drug_a: apixaban, drug_b_or_class: "class:strong_cyp3a4_pgp_inhibitors", severity: major, effect_uz: "Apixaban darajasi oshadi", management_uz: "Doza tuzatish yoki birga bermaslik"}
+- {drug_a: apixaban, drug_b_or_class: "class:strong_cyp3a4_pgp_inducers", severity: major, effect_uz: "Apixaban samarasi pasayadi", management_uz: "Birga bermaslik tavsiya etiladi"}
+- {drug_a: apixaban, drug_b_or_class: "class:nsaids", severity: major, effect_uz: "Qon ketish xavfi ortadi", management_uz: "Birga qo'llashdan qoching"}
+- {drug_a: apixaban, drug_b_or_class: "class:antiplatelet", severity: moderate, effect_uz: "Qon ketish xavfi ortadi", management_uz: "Foyda/xavf baholanadi"}
+- {drug_a: "class:ace_inhibitors", drug_b_or_class: spironolactone, severity: major, effect_uz: "Giperkaliemiya", management_uz: "K+ va kreatinin nazorati"}
+- {drug_a: "class:ace_inhibitors", drug_b_or_class: "class:arb", severity: major, effect_uz: "Ikkilamchi RAAS blokadasi: giperkaliemiya, o'tkir buyrak shikastlanishi", management_uz: "Odatda birga berilmaydi"}
+- {drug_a: "class:ace_inhibitors", drug_b_or_class: "class:potassium_supplements", severity: major, effect_uz: "Giperkaliemiya", management_uz: "K+ nazorati, qo'shimcha kaliydan qoching"}
+- {drug_a: "class:ace_inhibitors", drug_b_or_class: "class:nsaids", severity: moderate, effect_uz: "Buyrak funksiyasi yomonlashishi, gipotenziv samara kamayishi", management_uz: "Kreatinin/K+ nazorati"}
+- {drug_a: "class:ace_inhibitors", drug_b_or_class: "class:potassium_raising", severity: moderate, effect_uz: "Giperkaliemiya", management_uz: "K+ nazorati"}
+- {drug_a: "class:arb", drug_b_or_class: spironolactone, severity: major, effect_uz: "Giperkaliemiya", management_uz: "K+ va kreatinin nazorati"}
+- {drug_a: "class:arb", drug_b_or_class: "class:potassium_supplements", severity: major, effect_uz: "Giperkaliemiya", management_uz: "K+ nazorati"}
+- {drug_a: "class:arb", drug_b_or_class: "class:nsaids", severity: moderate, effect_uz: "Buyrak funksiyasi yomonlashishi", management_uz: "Kreatinin/K+ nazorati"}
+- {drug_a: "class:beta_blockers", drug_b_or_class: "class:ccb_nondhp", severity: contraindicated, effect_uz: "AV blok, og'ir bradikardiya, yurak yetishmovchiligining kuchayishi", management_uz: "Birga bermang"}
+- {drug_a: "class:beta_blockers", drug_b_or_class: "class:amiodarone", severity: major, effect_uz: "Bradikardiya, AV blok", management_uz: "Faqat kardiolog nazoratida"}
+- {drug_a: "class:beta_blockers", drug_b_or_class: "class:cardiac_glycosides", severity: moderate, effect_uz: "Bradikardiya, AV o'tkazuvchanlik buzilishi", management_uz: "YUCH va EKG nazorati"}
+- {drug_a: furosemide, drug_b_or_class: "class:aminoglycosides", severity: major, effect_uz: "Ototoksiklik/nefrotoksiklik kuchayadi", management_uz: "Ehtiyotkorlik, monitoring"}
+- {drug_a: furosemide, drug_b_or_class: "class:nsaids", severity: moderate, effect_uz: "Diuretik samara kamayadi, buyrak shikastlanishi xavfi", management_uz: "Buyrak funksiyasi va vazn nazorati"}
+- {drug_a: furosemide, drug_b_or_class: "class:cardiac_glycosides", severity: moderate, effect_uz: "Gipokaliemiya glikozid toksikligini oshiradi", management_uz: "K+ nazorati"}
+- {drug_a: spironolactone, drug_b_or_class: "class:potassium_supplements", severity: major, effect_uz: "Og'ir giperkaliemiya", management_uz: "Birga bermang"}
+- {drug_a: spironolactone, drug_b_or_class: "class:nsaids", severity: moderate, effect_uz: "Giperkaliemiya va buyrak shikastlanishi", management_uz: "K+ va kreatinin nazorati"}
+- {drug_a: spironolactone, drug_b_or_class: "class:potassium_raising", severity: moderate, effect_uz: "Giperkaliemiya", management_uz: "K+ nazorati"}
+- {drug_a: azithromycin_ie_prophylaxis, drug_b_or_class: "class:amiodarone", severity: major, effect_uz: "QT intervali uzayishi", management_uz: "EKG nazorati, muqobil tanlash"}
+- {drug_a: azithromycin_ie_prophylaxis, drug_b_or_class: warfarin, severity: moderate, effect_uz: "INR oshishi mumkin", management_uz: "INR nazorati"}

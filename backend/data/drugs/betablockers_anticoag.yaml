@@ -1,0 +1,127 @@
+# DRAFT seed - NOT clinically reviewed (kb_status: draft). See _meta.yaml.
+- drug_id: metoprolol_succinate
+  inn_en: metoprolol succinate
+  inn_uz: metoprolol suksinat
+  aliases: [metoprolol]
+  atc_code: C07AB02
+  class_group: beta_blockers
+  drug_class: beta1_selective
+  interaction_classes: [beta_blockers]
+  forms: [{form: tablet_er, strengths_mg: [23.75, 47.5, 95, 190]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+    - {condition_code: mitral_stenosis, min_condition_prob: 0.30, evidence_level: expert, dose_context: heart_failure}
+    - {condition_code: hypertrophic_cardiomyopathy, min_condition_prob: 0.30, evidence_level: guideline, dose_context: heart_failure}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 12.5, dose_max: 200, unit: mg, frequency: qd, max_daily: 200,
+       titration_uz: "12.5-25 mg dan boshlab, 2 haftada bir ikki baravar oshiriladi"}
+  contraindications:
+    - {kind: absolute, code: av_block_2_3_no_pacemaker}
+    - {kind: absolute, code: severe_bradycardia, condition_expr: {field: hr_bpm, op: "<", value: 50}, note_uz: "YUCH < 50"}
+    - {kind: absolute, code: decompensated_heart_failure_acute}
+    - {kind: relative, code: asthma_copd_severe}
+  monitoring: [{parameter: "YUCH, AQB", schedule_uz: "Har titrlashda"}]
+  adverse_effects: [{effect_uz: "Bradikardiya, charchash, bronxospazm, sovuq ekstremitalar"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: bisoprolol
+  inn_en: bisoprolol
+  inn_uz: bisoprolol
+  atc_code: C07AB07
+  class_group: beta_blockers
+  drug_class: beta1_selective
+  interaction_classes: [beta_blockers]
+  forms: [{form: tablet, strengths_mg: [1.25, 2.5, 5, 10]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+    - {condition_code: mitral_stenosis, min_condition_prob: 0.30, evidence_level: expert, dose_context: heart_failure}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 1.25, dose_max: 10, unit: mg, frequency: qd, max_daily: 10,
+       titration_uz: "1.25 mg dan boshlab, 1-4 haftada bir bosqichma-bosqich oshiriladi"}
+  contraindications:
+    - {kind: absolute, code: av_block_2_3_no_pacemaker}
+    - {kind: absolute, code: severe_bradycardia, condition_expr: {field: hr_bpm, op: "<", value: 50}}
+    - {kind: absolute, code: decompensated_heart_failure_acute}
+    - {kind: relative, code: asthma_copd_severe}
+  monitoring: [{parameter: "YUCH, AQB", schedule_uz: "Har titrlashda"}]
+  adverse_effects: [{effect_uz: "Bradikardiya, charchash, bosh aylanishi"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: carvedilol
+  inn_en: carvedilol
+  inn_uz: karvedilol
+  atc_code: C07AG02
+  class_group: beta_blockers
+  drug_class: nonselective_beta_alpha
+  interaction_classes: [beta_blockers]
+  forms: [{form: tablet, strengths_mg: [3.125, 6.25, 12.5, 25]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: heart_failure, min_condition_prob: 0.30, evidence_level: guideline}
+  doses:
+    - {population: adult, indication_context: heart_failure, route: po, dose_min: 3.125, dose_max: 25, unit: mg, frequency: bid, max_daily: 50,
+       titration_uz: "3.125 mg x2 dan boshlab, 2 haftada bir oshiriladi (> 85 kg bo'lsa yuqoriroq doza mumkin - shifokor aniqlaydi)"}
+  contraindications:
+    - {kind: absolute, code: av_block_2_3_no_pacemaker}
+    - {kind: absolute, code: severe_bradycardia, condition_expr: {field: hr_bpm, op: "<", value: 50}}
+    - {kind: absolute, code: decompensated_heart_failure_acute}
+    - {kind: absolute, code: asthma_copd_severe}
+    - {kind: relative, code: severe_hepatic_impairment}
+  monitoring: [{parameter: "YUCH, AQB, vazn", schedule_uz: "Har titrlashda"}]
+  adverse_effects: [{effect_uz: "Bradikardiya, gipotenziya, bosh aylanishi, suyuqlik ushlanishi"}]
+  sources: [{type: guideline, name: "ESC Heart Failure Guidelines", year: 2021}]
+
+- drug_id: apixaban
+  inn_en: apixaban
+  inn_uz: apiksaban
+  atc_code: B01AF02
+  class_group: anticoagulants
+  drug_class: doac_fxa
+  interaction_classes: [doac]
+  forms: [{form: tablet, strengths_mg: [2.5, 5]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: arrhythmia_suspected, requires_flags_any: [atrial_fibrillation], context_uz: "Tasdiqlangan nonvalvular FP (EKG bilan) bo'lsa; PCG o'zi indikatsiya emas", min_condition_prob: 0.0, evidence_level: guideline, dose_context: nonvalvular_af}
+  doses:
+    - {population: adult, indication_context: nonvalvular_af, route: po, dose_min: 2.5, dose_max: 5, unit: mg, frequency: bid, max_daily: 10,
+       titration_uz: "5 mg x2; quyidagilardan >=2 tasi bo'lsa 2.5 mg x2: yosh >=80, vazn <=60 kg, kreatinin >=133 mkmol/l"}
+  contraindications:
+    - {kind: absolute, code: mechanical_valve}
+    - {kind: absolute, code: moderate_severe_mitral_stenosis, note_uz: "Revmatik o'rta/og'ir mitral stenoz: DOAC o'rniga VKA (warfarin)"}
+    - {kind: absolute, code: active_major_bleeding}
+    - {kind: absolute, code: egfr_lt_15, condition_expr: {field: egfr_ml_min, op: "<", value: 15}}
+    - {kind: absolute, code: severe_hepatic_impairment, condition_expr: {field: child_pugh, op: "==", value: "C"}}
+    - {kind: absolute, code: pregnancy}
+  monitoring: [{parameter: "Kreatinin/eGFR, gemoglobin", schedule_uz: "Yiliga kamida 1 marta; buyrak buzilsa tez-tez"}]
+  adverse_effects: [{effect_uz: "Qon ketish, anemiya"}]
+  sources: [{type: guideline, name: "ESC Atrial Fibrillation Guidelines", year: 2020}]
+
+- drug_id: warfarin
+  inn_en: warfarin
+  inn_uz: varfarin
+  atc_code: B01AA03
+  class_group: anticoagulants
+  drug_class: vka
+  interaction_classes: [vka]
+  forms: [{form: tablet, strengths_mg: [2.5, 5]}]
+  enabled: true
+  kb_status: draft
+  indications:
+    - {condition_code: arrhythmia_suspected, requires_flags_any: [atrial_fibrillation, mechanical_valve, moderate_severe_mitral_stenosis], context_uz: "Mexanik qopqoq yoki o'rta/og'ir mitral stenoz bilan FP; PCG o'zi indikatsiya emas", min_condition_prob: 0.0, evidence_level: guideline, dose_context: valvular_anticoag}
+    - {condition_code: mitral_stenosis, requires_flags_any: [atrial_fibrillation, mechanical_valve], min_condition_prob: 0.0, evidence_level: guideline, dose_context: valvular_anticoag}
+  doses:
+    - {population: adult, indication_context: valvular_anticoag, route: po, dose_min: 1, dose_max: 10, unit: mg, frequency: qd, max_daily: 10,
+       titration_uz: "INR bo'yicha titrlanadi (maqsad INR indikatsiyaga qarab, shifokor belgilaydi)"}
+  contraindications:
+    - {kind: absolute, code: pregnancy, note_uz: "Teratogen"}
+    - {kind: absolute, code: active_major_bleeding}
+    - {kind: relative, code: severe_hepatic_impairment}
+  monitoring: [{parameter: "INR", schedule_uz: "Boshlanganda tez-tez, keyin barqaror bo'lganda kamida oyda 1 marta"}]
+  adverse_effects: [{effect_uz: "Qon ketish, teri nekrozi (kam), dori va ovqat bilan ko'p o'zaro ta'sir"}]
+  sources: [{type: guideline, name: "ESC/EACTS Valvular Heart Disease Guidelines", year: 2021}]

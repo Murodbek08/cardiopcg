@@ -1,0 +1,63 @@
+{
+  "_comment": "v1 reference data for the local drug-safety layer (cardio-focused, NOT exhaustive). Must be clinically reviewed before production use.",
+  "groups": {
+    "beta_blocker": ["metoprolol", "bisoprolol", "atenolol", "carvedilol", "propranolol", "nebivolol"],
+    "ace_inhibitor": ["lisinopril", "enalapril", "ramipril", "perindopril", "captopril"],
+    "arb": ["losartan", "valsartan", "candesartan", "telmisartan"],
+    "nsaid": ["ibuprofen", "diclofenac", "naproxen", "ketorolac", "meloxicam"],
+    "anticoagulant": ["warfarin", "rivaroxaban", "apixaban", "dabigatran", "heparin", "enoxaparin"],
+    "antiplatelet": ["aspirin", "acetylsalicylic acid", "clopidogrel", "ticagrelor", "prasugrel"],
+    "statin": ["atorvastatin", "simvastatin", "rosuvastatin", "pravastatin"],
+    "loop_diuretic": ["furosemide", "torsemide"],
+    "k_sparing": ["spironolactone", "eplerenone", "amiloride"],
+    "nondhp_ccb": ["verapamil", "diltiazem"],
+    "nitrate": ["nitroglycerin", "isosorbide mononitrate", "isosorbide dinitrate"],
+    "pde5": ["sildenafil", "tadalafil", "vardenafil"]
+  },
+  "interactions": [
+    {"a": "warfarin", "b": "antiplatelet", "level": "major", "note": "Qon ketish xavfi ortadi"},
+    {"a": "warfarin", "b": "nsaid", "level": "major", "note": "Qon ketish xavfi ortadi"},
+    {"a": "warfarin", "b": "amiodarone", "level": "major", "note": "Varfarin ta'siri kuchayadi, INR nazorati"},
+    {"a": "anticoagulant", "b": "antiplatelet", "level": "moderate", "note": "Qon ketish xavfi: nazorat zarur"},
+    {"a": "digoxin", "b": "amiodarone", "level": "major", "note": "Digoksin darajasi oshadi"},
+    {"a": "digoxin", "b": "loop_diuretic", "level": "moderate", "note": "Gipokaliemiya digoksin toksikligini oshiradi"},
+    {"a": "ace_inhibitor", "b": "k_sparing", "level": "major", "note": "Giperkaliemiya xavfi"},
+    {"a": "arb", "b": "k_sparing", "level": "major", "note": "Giperkaliemiya xavfi"},
+    {"a": "ace_inhibitor", "b": "arb", "level": "major", "note": "Ikki tomonlama RAAS blokadasi: buyrak/giperkaliemiya xavfi"},
+    {"a": "ace_inhibitor", "b": "nsaid", "level": "moderate", "note": "Buyrak funksiyasi yomonlashishi, ta'sir susayishi"},
+    {"a": "beta_blocker", "b": "nondhp_ccb", "level": "major", "note": "Bradikardiya / AV blokada xavfi"},
+    {"a": "statin", "b": "amiodarone", "level": "moderate", "note": "Miopatiya xavfi (ayniqsa simvastatin)"},
+    {"a": "simvastatin", "b": "diltiazem", "level": "moderate", "note": "Simvastatin darajasi oshadi"},
+    {"a": "nitrate", "b": "pde5", "level": "contraindicated", "note": "Og'ir gipotenziya: birga qo'llash mumkin emas"},
+    {"a": "clopidogrel", "b": "omeprazole", "level": "moderate", "note": "Klopidogrel ta'siri susayishi mumkin"}
+  ],
+  "allergy_classes": {
+    "penicillin": {"names": ["penicillin", "penitsillin", "amoxicillin", "amoksitsillin", "ampicillin", "ampitsillin"], "atc": ["J01C"], "cross": ["J01D"]},
+    "cephalosporin": {"names": ["cephalosporin", "sefalosporin", "ceftriaxone", "cefuroxime", "cefazolin"], "atc": ["J01D"], "cross": ["J01C"]},
+    "nsaid_aspirin": {"names": ["aspirin", "acetylsalicylic acid", "atsetilsalitsil", "nsaid", "ibuprofen", "diclofenac"], "atc": ["N02BA", "B01AC06", "M01A"], "cross": ["M01A", "B01AC06"]},
+    "sulfonamide": {"names": ["sulfonamide", "sulfa", "sulfametoksazol"], "atc": ["J01E"], "cross": ["C03CA"]},
+    "statin": {"names": ["statin", "atorvastatin", "simvastatin", "rosuvastatin"], "atc": ["C10AA"], "cross": []},
+    "ace_inhibitor": {"names": ["ace inhibitor", "lisinopril", "enalapril", "ramipril", "captopril"], "atc": ["C09A"], "cross": []}
+  },
+  "atc_by_name": {
+    "amoxicillin": "J01CA04", "ampicillin": "J01CA01", "ceftriaxone": "J01DD04", "cefuroxime": "J01DC02",
+    "aspirin": "B01AC06", "acetylsalicylic acid": "B01AC06", "ibuprofen": "M01AE01", "diclofenac": "M01AB05",
+    "furosemide": "C03CA01", "lisinopril": "C09AA03", "enalapril": "C09AA02", "ramipril": "C09AA05",
+    "atorvastatin": "C10AA05", "simvastatin": "C10AA01", "rosuvastatin": "C10AA07", "warfarin": "B01AA03"
+  },
+  "max_daily_mg": {
+    "aspirin": 4000, "acetylsalicylic acid": 4000, "furosemide": 600, "metoprolol": 400, "bisoprolol": 20,
+    "atenolol": 200, "lisinopril": 80, "enalapril": 40, "ramipril": 20, "atorvastatin": 80, "simvastatin": 80,
+    "rosuvastatin": 40, "spironolactone": 400, "digoxin": 0.5, "amiodarone": 1200, "warfarin": 15, "carvedilol": 100
+  },
+  "contraindications": [
+    {"groups": ["beta_blocker"], "icd10": ["J45", "J44", "I44", "I49.5"], "keywords": ["asthma", "astma", "bradycard", "bradikard", "av blok", "sick sinus"], "note": "Bronxial astma / bradikardiya / AV blokada"},
+    {"groups": ["nsaid", "antiplatelet"], "icd10": ["K25", "K26", "K92"], "keywords": ["ulcer", "yara", "oshqozon qon", "gi bleeding"], "note": "Oshqozon-ichak yarasi / qon ketish"},
+    {"groups": ["ace_inhibitor", "arb", "statin"], "icd10": ["O", "Z33"], "keywords": ["pregnan", "homilador"], "note": "Homiladorlik"},
+    {"groups": ["ace_inhibitor"], "icd10": ["T78.3", "D84.1"], "keywords": ["angioedema", "angioedem"], "note": "Angioedema anamnezda"},
+    {"groups": ["loop_diuretic"], "icd10": ["R34"], "keywords": ["anuria", "anuriya"], "note": "Anuriya"},
+    {"groups": ["statin"], "icd10": ["K70", "K71", "K72", "K74"], "keywords": ["liver failure", "jigar yetishmovchilik", "cirrhosis", "sirroz"], "note": "Faol jigar kasalligi"},
+    {"groups": ["nondhp_ccb"], "icd10": ["I50"], "keywords": ["heart failure", "yurak yetishmovchilik"], "note": "Yurak yetishmovchiligi (reduced EF)"},
+    {"groups": ["k_sparing"], "icd10": ["N18.5", "E87.5"], "keywords": ["hyperkal", "giperkali", "renal failure", "buyrak yetishmovchilik"], "note": "Giperkaliemiya / og'ir buyrak yetishmovchiligi"}
+  ]
+}

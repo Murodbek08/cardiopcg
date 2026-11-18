@@ -1,0 +1,131 @@
+# Host nginx vhost for CardioPCG AI  ->  /etc/nginx/sites-available/cardiopcgai.189.uz
+#
+# TEMPLATE. Placeholders (replaced by deploy/scripts/install-vhost.sh, or by hand):
+#   @API_PORT@   127.0.0.1 port of the api container      (default 18400, CARDIOPCG_API_PORT)
+#   @WEB_PORT@   127.0.0.1 port of the frontend container (default 18401, CARDIOPCG_WEB_PORT)
+#   @CERT@       certificate path    e.g. /etc/letsencrypt/live/cardiopcgai.189.uz/fullchain.pem
+#   @CERT_KEY@   certificate key     e.g. /etc/letsencrypt/live/cardiopcgai.189.uz/privkey.pem
+#
+# Rules: this is the ONLY nginx file we add. Never edit nginx.conf or other sites. Back up /etc/nginx first,
+# run `nginx -t`, then `systemctl reload nginx` (never restart).
+# Companion snippets installed next to it in /etc/nginx/:  cardiopcg-cloudflare-realip.conf,
+# cardiopcg-security-headers.conf (this folder: cardiopcg-*.conf).
+
+upstream cardiopcg_api { server 127.0.0.1:@API_PORT@; keepalive 16; }
+upstream cardiopcg_web { server 127.0.0.1:@WEB_PORT@; keepalive 8; }
+
+# WebSocket upgrade only when asked; empty Connection keeps upstream keepalive for normal requests
+map $http_upgrade $cardiopcg_conn_upgrade { default upgrade; '' ''; }
+
+# The WebSocket token is passed as ?token=... : log $uri (no query string) so tokens never reach the access log
+log_format cardiopcg_main '$remote_addr - $remote_user [$time_local] "$request_method $uri $server_protocol" '
+                          '$status $body_bytes_sent "$http_referer" "$http_user_agent" rt=$request_time';
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name cardiopcgai.189.uz;
+    location /.well-known/acme-challenge/ { root /var/www/certbot; }
+    location / { return 301 https://$host$request_uri; }
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    http2 on;
+    server_name cardiopcgai.189.uz;
+
+    ssl_certificate     @CERT@;
+    ssl_certificate_key @CERT_KEY@;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:cardiopcg_ssl:10m;
+    ssl_session_timeout 1d;
+
+    # Cloudflare real client IP (only CF ranges are trusted)
+    include /etc/nginx/cardiopcg-cloudflare-realip.conf;
+
+    access_log /var/log/nginx/cardiopcg.access.log cardiopcg_main;
+    error_log  /var/log/nginx/cardiopcg.error.log warn;
+
+    server_tokens off;
+
+    # PCG uploads (app limit is 50 MB; 55m leaves multipart overhead). Other locations override with smaller values.
+    client_max_body_size 55m;
+    client_body_timeout 60s;
+
+    gzip on;
+    gzip_comp_level 5;
+    gzip_min_length 1024;
+    gzip_types text/css application/javascript application/json image/svg+xml text/plain;
+
+    # Security headers (also included inside locations that use add_header, because add_header does not inherit)
+    include /etc/nginx/cardiopcg-security-headers.conf;
+
+    # ---- WebSocket: /api/v1/ws?token=...
+    location = /api/v1/ws {
+        proxy_pass http://cardiopcg_api;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        proxy_buffering off;
+        client_max_body_size 1m;
+    }
+
+    # ---- SSE: /api/v1/examinations/<id>/events  (no buffering, long read timeout)
+    location ~ ^/api/v1/examinations/[^/]+/events$ {
+        proxy_pass http://cardiopcg_api;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_read_timeout 3600s;
+        client_max_body_size 1m;
+        add_header Cache-Control "no-store" always;
+        include /etc/nginx/cardiopcg-security-headers.conf;
+    }
+
+    # ---- REST API
+    location /api/ {
+        proxy_pass http://cardiopcg_api;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $cardiopcg_conn_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_read_timeout 120s;
+        proxy_send_timeout 120s;
+        proxy_request_buffering on;
+        client_max_body_size 55m;
+        add_header Cache-Control "no-store" always;
+        include /etc/nginx/cardiopcg-security-headers.conf;
+    }
+
+    # Internal endpoints are never exposed
+    location ~ ^/(metrics|docs|redoc|openapi\.json) { return 404; }
+
+    # ---- Frontend (static SPA container)
+    location / {
+        proxy_pass http://cardiopcg_web;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        client_max_body_size 1m;
+        # the container sets Cache-Control (immutable assets / no-cache index); keep nosniff etc. from the snippet
+        include /etc/nginx/cardiopcg-security-headers.conf;
+    }
+}

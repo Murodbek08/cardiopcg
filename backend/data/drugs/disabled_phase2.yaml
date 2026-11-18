@@ -1,0 +1,42 @@
+# Entries present for interaction/alias completeness but DISABLED in phase 1 (doc 02 section 15.1).
+- drug_id: amiodarone
+  inn_en: amiodarone
+  inn_uz: amiodaron
+  atc_code: C01BD01
+  class_group: antiarrhythmics
+  drug_class: class_iii_antiarrhythmic
+  interaction_classes: [amiodarone]
+  enabled: false
+  kb_status: draft
+  indications: []
+  doses: []
+  contraindications: []
+  sources: [{type: note, name: "Cardiologist approval only; phase 2"}]
+
+- drug_id: digoxin
+  inn_en: digoxin
+  inn_uz: digoksin
+  atc_code: C01AA05
+  class_group: antiarrhythmics
+  drug_class: cardiac_glycoside
+  interaction_classes: [cardiac_glycosides]
+  enabled: false
+  kb_status: draft
+  indications: []
+  doses: []
+  contraindications: []
+  sources: [{type: note, name: "Cardiologist approval only; phase 2"}]
+
+- drug_id: atorvastatin
+  inn_en: atorvastatin
+  inn_uz: atorvastatin
+  atc_code: C10AA05
+  class_group: statins_antiplatelets
+  drug_class: statin
+  interaction_classes: [statins]
+  enabled: false
+  kb_status: draft
+  indications: []
+  doses: []
+  contraindications: []
+  sources: [{type: note, name: "PCG itself gives no indication; phase 2"}]

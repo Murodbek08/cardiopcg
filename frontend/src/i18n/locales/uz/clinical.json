@@ -1,0 +1,63 @@
+{
+  "risk": {
+    "label": "Risk",
+    "low": "Past",
+    "moderate": "O'rta",
+    "high": "Yuqori",
+    "critical": "Kritik",
+    "unknown": "Noma'lum"
+  },
+  "severity": {
+    "none": "Yo'q",
+    "mild": "Yengil",
+    "moderate": "O'rtacha",
+    "severe": "Og'ir",
+    "critical": "Kritik"
+  },
+  "pcg_class": {
+    "normal": "Normal",
+    "murmur": "Shovqin",
+    "extra_heart_sound": "Qo'shimcha tovush",
+    "artifact": "Artefakt",
+    "undetermined": "Aniqlanmagan"
+  },
+  "interaction": {
+    "minor": "Kichik",
+    "moderate": "O'rtacha",
+    "major": "Jiddiy",
+    "contraindicated": "Qarshi ko'rsatma"
+  },
+  "ai": {
+    "disclaimer": "AI xulosasi - ma'lumot uchun, shifokor tasdiqlaydi",
+    "badge_short": "AI - ma'lumot uchun"
+  },
+  "site": {
+    "aortic": "Aortal",
+    "pulmonic": "Pulmonal",
+    "erb": "Erb nuqtasi",
+    "tricuspid": "Trikuspid",
+    "mitral": "Mitral",
+    "apex": "Cho'qqi",
+    "carotid": "Uyqu arteriyasi",
+    "other": "Boshqa"
+  },
+  "waveform": {
+    "label": "Audio to'lqin shakli",
+    "play": "Ijro etish",
+    "pause": "To'xtatish",
+    "back": "1 soniya orqaga",
+    "forward": "1 soniya oldinga",
+    "speed": "Tezlik",
+    "zoom": "Masshtab",
+    "zoom_in": "Kattalashtirish",
+    "zoom_out": "Kichraytirish",
+    "legend": "Belgilar izohi",
+    "murmur": "Shovqin",
+    "read_only": "Faqat o'qish"
+  },
+  "spectrogram": {
+    "alt": "Spektrogramma",
+    "axis": "Chastota: 0-{{max}} Hz",
+    "contrast": "Kontrast"
+  }
+}

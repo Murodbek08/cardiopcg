@@ -1,0 +1,24 @@
+{
+  "title": "Bildirishnomalar",
+  "bell": "Bildirishnomalar, o'qilmagan: {{count}}",
+  "view_all": "Hammasini ko'rish",
+  "empty": "Yangi bildirishnoma yo'q",
+  "mark_all": "Hammasini o'qilgan qil",
+  "mark_read": "O'qilgan",
+  "open": "Ochish",
+  "filter": {
+    "all": "Hammasi",
+    "unread": "O'qilmagan",
+    "critical": "Kritik"
+  },
+  "types": {
+    "exam_uploaded": "Tekshiruv yuklandi",
+    "analysis_done": "Tahlil tayyor",
+    "analysis_failed": "Tahlil xatosi",
+    "review_requested": "Tasdiqlash so'raldi",
+    "conclusion_signed": "Xulosa imzolandi",
+    "critical_finding": "Kritik topilma",
+    "assignment": "Tayinlash",
+    "system": "Tizim"
+  }
+}

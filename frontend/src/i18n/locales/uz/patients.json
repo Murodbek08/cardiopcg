@@ -1,0 +1,119 @@
+{
+  "title": "Bemorlar",
+  "new": "Yangi bemor",
+  "new_exam": "Yangi tekshiruv",
+  "empty": "Hali bemor yo'q",
+  "empty_filtered": "Mos bemor topilmadi",
+  "admin_masked": "Administrator uchun shaxsiy ma'lumotlar maskalangan, klinik tafsilotlar yashirilgan.",
+  "archived": "Bemor arxivlangan: tahrirlash o'chirilgan.",
+  "allergy": "Allergiya",
+  "allergies": "Allergiyalar",
+  "medications": "Faol dorilar",
+  "none": "Ma'lumot yo'q",
+  "no_exams": "Hali tekshiruv yo'q",
+  "cols": {
+    "name": "F.I.Sh.",
+    "age_gender": "Yosh / Jins",
+    "phone": "Telefon",
+    "last_exam": "Oxirgi tekshiruv",
+    "exams": "Tekshiruvlar",
+    "allergy": "Allergiya"
+  },
+  "filters": {
+    "search": "Qidiruv",
+    "search_placeholder": "Ism, MRN yoki telefon",
+    "gender": "Jins",
+    "age_min": "Yosh (dan)",
+    "age_max": "Yosh (gacha)",
+    "age_range_error": "Yosh oralig'i noto'g'ri",
+    "allergy": "Allergiya"
+  },
+  "tabs": {
+    "overview": "Umumiy",
+    "history": "Anamnez",
+    "exams": "Tekshiruvlar"
+  },
+  "stats": {
+    "exam_count": "Tekshiruvlar soni",
+    "last_exam": "Oxirgi tekshiruv",
+    "last_class": "Oxirgi natija"
+  },
+  "exam_cols": {
+    "no": "Raqam",
+    "date": "Sana",
+    "status": "Holat",
+    "priority": "Muhimlik",
+    "ai": "AI natijasi"
+  },
+  "trends": {
+    "title": "Trendlar",
+    "need_two": "Trend uchun kamida 2 ta tekshiruv kerak.",
+    "hr": "Yurak urish chastotasi",
+    "bp": "Qon bosimi",
+    "sys": "Sistolik",
+    "dia": "Diastolik",
+    "murmur": "Shovqin darajasi",
+    "confidence": "AI ishonchi",
+    "timeline": "Tekshiruvlar xronologiyasi"
+  },
+  "form": {
+    "edit_title": "Bemorni tahrirlash",
+    "saved": "Saqlandi",
+    "created": "Bemor yaratildi",
+    "conflict": "Boshqa foydalanuvchi o'zgartirdi: sahifani yangilang.",
+    "personal": "Shaxsiy ma'lumot",
+    "contact": "Aloqa",
+    "anthropometry": "Antropometriya",
+    "doctor_notes": "Mas'ul shifokor va eslatma",
+    "last_name": "Familiya",
+    "first_name": "Ism",
+    "middle_name": "Otasining ismi",
+    "birth_date": "Tug'ilgan sana",
+    "blood": "Qon guruhi",
+    "unknown": "Noma'lum",
+    "national_id": "JShShIR",
+    "national_id_edit": "Bo'sh qoldirsangiz o'zgarmaydi",
+    "address": "Manzil",
+    "emergency_name": "Favqulodda aloqa (ism)",
+    "emergency_phone": "Favqulodda aloqa (telefon)",
+    "height": "Bo'y",
+    "weight": "Vazn",
+    "bmi": {
+      "under": "kam vazn",
+      "normal": "normal",
+      "over": "ortiqcha vazn",
+      "obese": "semizlik"
+    },
+    "primary_doctor": "Mas'ul shifokor",
+    "none": "Yo'q",
+    "notes": "Eslatmalar",
+    "allergies": "Allergiyalar",
+    "medications": "Hozirgi dorilar",
+    "history": "Anamnez",
+    "add": "Qo'shish",
+    "substance": "Modda",
+    "reaction": "Reaksiya",
+    "drug": "Dori",
+    "dose": "Doza",
+    "frequency": "Chastota",
+    "title": "Nomi",
+    "severity": {
+      "mild": "Yengil",
+      "moderate": "O'rtacha",
+      "severe": "Og'ir",
+      "anaphylaxis": "Anafilaksiya"
+    },
+    "kind": {
+      "cardiac": "Yurak",
+      "chronic": "Surunkali",
+      "surgical": "Operatsiya",
+      "family": "Oilaviy",
+      "habit": "Odat",
+      "other": "Boshqa"
+    },
+    "consent": "Ma'lumotni qayta ishlashga va AI tahliliga rozilik (majburiy)",
+    "dup_title": "O'xshash bemor mavjud",
+    "dup_body": "Shu ism va tug'ilgan sanali bemor bor. Baribir yaratishni tasdiqlaysizmi?",
+    "dup_force": "Baribir yaratish"
+  }
+}
