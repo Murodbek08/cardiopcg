@@ -33,10 +33,10 @@ docker exec cardiopcg-postgres pg_dump -U "$PGUSER" -d "$PGDB" -Fc --no-owner \
 mv "$DIR/pg-$STAMP.dump.age.tmp" "$DIR/pg-$STAMP.dump.age"
 
 # 2) MinIO data (read-only mount of OUR volume; stream-encrypted, no plaintext archive on disk)
-log "minio volume"
-docker run --rm -v cardiopcg_minio:/data:ro alpine:3.20 tar -czf - -C /data . \
-  | age -r "$AGE_RECIPIENT" > "$DIR/minio-$STAMP.tgz.age.tmp"
-mv "$DIR/minio-$STAMP.tgz.age.tmp" "$DIR/minio-$STAMP.tgz.age"
+log "storage volume"
+docker run --rm -v cardiopcg_storage:/data:ro alpine:3.20 tar -czf - -C /data . \
+  | age -r "$AGE_RECIPIENT" > "$DIR/storage-$STAMP.tgz.age.tmp"
+mv "$DIR/storage-$STAMP.tgz.age.tmp" "$DIR/storage-$STAMP.tgz.age"
 
 # 3) nginx vhost + snippets (small, only our own files)
 log "nginx vhost"
@@ -60,6 +60,6 @@ if [ -n "$RCLONE_REMOTE" ]; then
 fi
 
 # 6) local retention (only our files, only in $DIR)
-find "$DIR" -maxdepth 1 -type f \( -name 'pg-*.age' -o -name 'minio-*.age' -o -name 'nginx-*.age' -o -name 'env-*.age' \) -mtime +"$RETENTION" -delete
+find "$DIR" -maxdepth 1 -type f \( -name 'pg-*.age' -o -name 'storage-*.age' -o -name 'nginx-*.age' -o -name 'env-*.age' \) -mtime +"$RETENTION" -delete
 
 log "done: $(ls -1 "$DIR"/*-"$STAMP".* | wc -l) files, $(du -sh "$DIR" | cut -f1) total in $DIR"

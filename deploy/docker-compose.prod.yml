@@ -19,11 +19,11 @@ x-app-env: &app-env
   APP_VERSION: ${APP_VERSION:-latest}
   GIT_COMMIT: ${GIT_COMMIT:-unknown}
   JOB_RUNNER: celery
-  STORAGE_BACKEND: s3
+  STORAGE_BACKEND: local
+  STORAGE_LOCAL_DIR: /data/storage
   DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
   REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379/0
   CELERY_BROKER_URL: redis://:${REDIS_PASSWORD}@redis:6379/1
-  S3_ENDPOINT: http://minio:9000
   TZ: ${TZ:-Asia/Tashkent}
 
 services:
@@ -64,57 +64,19 @@ services:
       timeout: 3s
       retries: 6
 
-  minio:
-    <<: *common
-    image: ${MINIO_IMAGE:-minio/minio:RELEASE.2025-09-07T16-13-09Z}
-    container_name: cardiopcg-minio
-    command: ["server", "/data", "--console-address", ":9001"]
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?set MINIO_ROOT_USER in deploy/.env}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?set MINIO_ROOT_PASSWORD in deploy/.env}
-    volumes: ["cardiopcg_minio:/data"]
-    mem_limit: 512m
-    cpus: 0.5
-    pids_limit: 200
-    healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
-      interval: 15s
-      timeout: 5s
-      retries: 5
-    # no ports; console only through a temporary SSH tunnel
-
-  # one-shot: creates the private buckets and a least-privilege application user for the API/worker
-  minio-init:
+  # storage-init: gives the shared local-storage volume to the non-root app user
+  storage-init:
     <<: *common
     restart: "no"
-    image: ${MINIO_IMAGE:-minio/minio:RELEASE.2025-09-07T16-13-09Z}   # same image: it ships the `mc` client
-    container_name: cardiopcg-minio-init
-    depends_on:
-      minio: { condition: service_healthy }
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-      S3_ACCESS_KEY: ${S3_ACCESS_KEY:?set S3_ACCESS_KEY in deploy/.env}
-      S3_SECRET_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in deploy/.env}
-      S3_BUCKET_AUDIO: ${S3_BUCKET_AUDIO:-pcg-audio}
-      S3_BUCKET_REPORTS: ${S3_BUCKET_REPORTS:-pcg-reports}
-    entrypoint: ["/bin/sh", "-c"]
-    command:
-      - |
-        set -e
-        mc alias set local http://minio:9000 "$$MINIO_ROOT_USER" "$$MINIO_ROOT_PASSWORD" >/dev/null
-        mc mb --ignore-existing "local/$$S3_BUCKET_AUDIO" "local/$$S3_BUCKET_REPORTS"
-        mc anonymous set none "local/$$S3_BUCKET_AUDIO"
-        mc anonymous set none "local/$$S3_BUCKET_REPORTS"
-        cat > /tmp/policy.json <<POLICY
-        {"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":["s3:*"],"Resource":["arn:aws:s3:::$$S3_BUCKET_AUDIO","arn:aws:s3:::$$S3_BUCKET_AUDIO/*","arn:aws:s3:::$$S3_BUCKET_REPORTS","arn:aws:s3:::$$S3_BUCKET_REPORTS/*"]}]}
-        POLICY
-        mc admin policy create local cardiopcg-app /tmp/policy.json
-        mc admin user add local "$$S3_ACCESS_KEY" "$$S3_SECRET_KEY" || true
-        mc admin policy attach local cardiopcg-app --user "$$S3_ACCESS_KEY" || true
-        echo "minio-init done"
-    mem_limit: 128m
-    cpus: 0.25
+    image: alpine:3.20
+    container_name: cardiopcg-storage-init
+    user: "0:0"
+    command: ["sh", "-c", "mkdir -p /data/storage && chown -R 10001:10001 /data/storage && chmod 750 /data/storage"]
+    volumes: ["cardiopcg_storage:/data/storage"]
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER]
+    mem_limit: 64m
+
 
   # one-shot: alembic migrations (api waits for it)
   migrate:
@@ -145,12 +107,12 @@ services:
     depends_on:
       postgres: { condition: service_healthy }
       redis: { condition: service_healthy }
-      minio: { condition: service_healthy }
       migrate: { condition: service_completed_successfully }
-      minio-init: { condition: service_completed_successfully }
+      storage-init: { condition: service_completed_successfully }
     ports: ["127.0.0.1:${CARDIOPCG_API_PORT:-18400}:8000"]
     read_only: true
     tmpfs: ["/tmp:size=256m"]
+    volumes: ["cardiopcg_storage:/data/storage"]
     mem_limit: 1g
     cpus: 1.0
     pids_limit: 300
@@ -174,6 +136,7 @@ services:
       api: { condition: service_healthy }
     read_only: true
     tmpfs: ["/tmp:size=512m"]
+    volumes: ["cardiopcg_storage:/data/storage"]
     mem_limit: 1536m
     cpus: 1.5
     pids_limit: 300
@@ -243,5 +206,5 @@ networks:
 volumes:
   cardiopcg_pgdata: { name: cardiopcg_pgdata }
   cardiopcg_redis: { name: cardiopcg_redis }
-  cardiopcg_minio: { name: cardiopcg_minio }
+  cardiopcg_storage: { name: cardiopcg_storage }
   cardiopcg_clamav: { name: cardiopcg_clamav }
