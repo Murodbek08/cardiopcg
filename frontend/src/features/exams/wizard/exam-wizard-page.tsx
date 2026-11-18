@@ -9,7 +9,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { IconAlertTriangle, IconCheck, IconTrash, IconUpload } from '@tabler/icons-react';
 import {
   Alert, AudioWaveform, Badge, Button, Card, CardBody, CheckboxField, ErrorState, Field, FileDropzone, Input, PageHeader, RadioGroup, RadioItem, Select, Skeleton, Textarea,
-  ALL, cn, errorMessage, formatBytes, formatDuration, get, toast, useDebounce, usePermission,
+  ALL, ApiError, cn, errorMessage, formatBytes, formatDuration, get, toast, useDebounce, usePermission,
 } from '@/shared';
 import type { ExamDetail, PatientListItem, Paged, Recording } from '@/shared/api/types';
 import {
@@ -348,11 +348,16 @@ function ConfirmStep({ exam, onBack }: { exam: ExamDetail; onBack: () => void })
   const go = async () => {
     try {
       await analyze.mutateAsync(undefined);
-      st.reset();
-      void navigate({ to: '/exams/$id/progress', params: { id: exam.id } } as never);
     } catch (e) {
-      toast.error(errorMessage(e, t as never));
+      // 409: the backend already started (or finished) the analysis automatically after the audio upload
+      // (analysis.auto_start). That is not an error for the nurse - just continue to the progress page.
+      if (!(e instanceof ApiError && e.status === 409)) {
+        toast.error(errorMessage(e, t as never));
+        return;
+      }
     }
+    st.reset();
+    void navigate({ to: '/exams/$id/progress', params: { id: exam.id } } as never);
   };
   return (
     <div className="space-y-5">
